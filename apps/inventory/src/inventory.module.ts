@@ -5,8 +5,6 @@ import { InventoryService } from './inventory.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
-import { CollectionsModule } from './collections/collections.module';
-
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -15,7 +13,6 @@ import { CollectionsModule } from './collections/collections.module';
         federation: 2,
       },
     }),
-    CollectionsModule,
   ],
   controllers: [InventoryController],
   providers: [InventoryService],
