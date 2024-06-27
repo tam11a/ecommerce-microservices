@@ -23,6 +23,12 @@
       ],
       "@app/prisma/*": [
         "libs/prisma/src/*"
+      ],
+      "@app/paging": [
+        "libs/paging/src"
+      ],
+      "@app/paging/*": [
+        "libs/paging/src/*"
       ]
     }
   }

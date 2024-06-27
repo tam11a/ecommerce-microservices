@@ -6,10 +6,12 @@ import {
 } from '@nestjs/apollo';
 import { CollectionsModule } from './collections/collections.module';
 import { PrismaModule } from '@app/prisma';
+import { PagingModule } from '@app/paging';
 
 @Module({
   imports: [
     PrismaModule,
+    PagingModule,
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
       typePaths: ['**/*.graphql'],

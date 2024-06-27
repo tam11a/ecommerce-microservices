@@ -1,19 +1,51 @@
+scalar DateTime
+scalar ConnectionCursor
+
 type Collection {
-  # Example field (placeholder)
-  exampleField: Int
+  id: Int!
+  label: String!
+  description: String
+  created_at: DateTime!
+  updated_at: DateTime!
 }
 
 input CreateCollectionInput {
-  # Example field (placeholder)
-  exampleField: Int
+  label: String!
+  description: String
 }
 
 input UpdateCollectionInput {
   id: Int!
+  label: String
+  description: String
+}
+
+type PageInfo {
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor: ConnectionCursor
+  endCursor: ConnectionCursor
+}
+
+type CollectionConnection {
+  pageInfo: PageInfo!
+  edges: [CollectionEdge]!
+}
+
+type CollectionEdge {
+  node: Collection!
+  cursor: ConnectionCursor!
+}
+
+input Paging {
+  first: Int
+  last: Int
+  after: ConnectionCursor
+  before: ConnectionCursor
 }
 
 type Query {
-  collections: [Collection]!
+  collections(paging: Paging): CollectionConnection!
   collection(id: Int!): Collection
 }
 

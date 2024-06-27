@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CollectionsService } from './collections.service';
 import { CreateCollectionInput } from './dto/create-collection.input';
 import { UpdateCollectionInput } from './dto/update-collection.input';
+import { PagingInput } from '@app/paging';
 
 @Resolver('Collection')
 export class CollectionsResolver {
@@ -15,8 +16,8 @@ export class CollectionsResolver {
   }
 
   @Query('collections')
-  findAll() {
-    return this.collectionsService.findAll();
+  findAll(@Args('paging') paging: PagingInput) {
+    return this.collectionsService.findAll(paging);
   }
 
   @Query('collection')

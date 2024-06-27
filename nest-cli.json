@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/prisma/tsconfig.lib.json"
       }
+    },
+    "paging": {
+      "type": "library",
+      "root": "libs/paging",
+      "entryFile": "index",
+      "sourceRoot": "libs/paging/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/paging/tsconfig.lib.json"
+      }
     }
   }
 }
