@@ -14,9 +14,19 @@ datasource db {
 }
 
 model Collection {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   label       String
   description String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  products    Product[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+}
+
+model Product {
+  id          Int          @id @default(autoincrement())
+  label       String
+  description String?
+  collections Collection[]
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
 }

@@ -7,6 +7,7 @@ import {
 import { CollectionsModule } from './collections/collections.module';
 import { PrismaModule } from '@app/prisma';
 import { PagingModule } from '@app/paging';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { PagingModule } from '@app/paging';
       typePaths: ['**/*.graphql'],
     }),
     CollectionsModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [],

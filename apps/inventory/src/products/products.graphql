@@ -1,26 +1,26 @@
 scalar DateTime
 scalar ConnectionCursor
 
-type Collection {
+type Product {
   id: Int!
   label: String!
   description: String
-  products: [Product]
+  collections: [Collection]
   created_at: DateTime!
   updated_at: DateTime!
 }
 
-input CreateCollectionInput {
+input CreateProductInput {
   label: String!
   description: String
-  products: [Int]
+  collections: [Int]
 }
 
-input UpdateCollectionInput {
+input UpdateProductInput {
   id: Int!
   label: String
   description: String
-  products: [Int]
+  collections: [Int]
 }
 
 type PageInfo {
@@ -30,13 +30,13 @@ type PageInfo {
   endCursor: ConnectionCursor
 }
 
-type CollectionConnection {
+type ProductConnection {
   pageInfo: PageInfo!
-  edges: [CollectionEdge]!
+  edges: [ProductEdge]!
 }
 
-type CollectionEdge {
-  node: Collection!
+type ProductEdge {
+  node: Product!
   cursor: ConnectionCursor!
 }
 
@@ -48,12 +48,12 @@ input Paging {
 }
 
 type Query {
-  collections(paging: Paging): CollectionConnection!
-  collection(id: Int!): Collection
+  products(paging: Paging): ProductConnection!
+  product(id: Int!): Product
 }
 
 type Mutation {
-  createCollection(createCollectionInput: CreateCollectionInput!): Collection!
-  updateCollection(updateCollectionInput: UpdateCollectionInput!): Collection!
-  removeCollection(id: Int!): Collection
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: Int!): Product
 }

@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class CreateCollectionInput {
+export class CreateProductInput {
   @Field({
     nullable: false,
   })
@@ -11,5 +11,5 @@ export class CreateCollectionInput {
   description: string;
 
   @Field(() => [Int])
-  products?: number[];
+  collections?: number[];
 }

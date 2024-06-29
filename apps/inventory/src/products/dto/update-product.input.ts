@@ -1,8 +1,8 @@
 import { Field, Int } from '@nestjs/graphql';
-import { CreateCollectionInput } from './create-collection.input';
+import { CreateProductInput } from './create-product.input';
 import { PartialType } from '@nestjs/mapped-types';
 
-export class UpdateCollectionInput extends PartialType(CreateCollectionInput) {
+export class UpdateProductInput extends PartialType(CreateProductInput) {
   @Field(() => Int)
   id: number;
 
@@ -13,5 +13,5 @@ export class UpdateCollectionInput extends PartialType(CreateCollectionInput) {
   description?: string;
 
   @Field(() => [Int])
-  products?: number[];
+  collections?: number[];
 }
