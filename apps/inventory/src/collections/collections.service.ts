@@ -10,13 +10,24 @@ export class CollectionsService {
     private prisma: PrismaService,
     private paging: PagingService,
   ) {}
-  private readonly default_include = {};
+  private readonly default_include = {
+    _count: true,
+    products: true,
+  };
 
   create(createCollectionInput: CreateCollectionInput) {
+    const { label, description, products } = createCollectionInput;
     return this.prisma.collection.create({
       data: {
-        ...createCollectionInput,
+        label,
+        description,
+        products: {
+          connect: products?.map((productId) => ({
+            id: productId,
+          })),
+        },
       },
+      include: this.default_include,
     });
   }
 
@@ -26,7 +37,7 @@ export class CollectionsService {
       take,
       skip,
       cursor: cursor ? { id: parseInt(cursor) } : undefined,
-      // include: { ...default_include },
+      include: this.default_include,
     });
 
     return {
@@ -51,17 +62,26 @@ export class CollectionsService {
       where: {
         id,
       },
+      include: this.default_include,
     });
   }
 
   update(id: number, updateCollectionInput: UpdateCollectionInput) {
+    const { products, label, description } = updateCollectionInput;
     return this.prisma.collection.update({
       where: {
         id,
       },
       data: {
-        ...updateCollectionInput,
+        label,
+        description,
+        products: {
+          set: products?.map((productId) => ({
+            id: productId,
+          })),
+        },
       },
+      include: this.default_include,
     });
   }
 
@@ -70,6 +90,7 @@ export class CollectionsService {
       where: {
         id,
       },
+      include: this.default_include,
     });
   }
 }
