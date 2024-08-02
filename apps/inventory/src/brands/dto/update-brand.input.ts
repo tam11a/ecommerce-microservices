@@ -1,8 +1,8 @@
 import { Field, Int } from '@nestjs/graphql';
-import { CreateProductInput } from './create-product.input';
+import { CreateBrandInput } from './create-brand.input';
 import { PartialType } from '@nestjs/mapped-types';
 
-export class UpdateProductInput extends PartialType(CreateProductInput) {
+export class UpdateBrandInput extends PartialType(CreateBrandInput) {
   @Field(() => Int)
   id: number;
 
@@ -13,8 +13,5 @@ export class UpdateProductInput extends PartialType(CreateProductInput) {
   description?: string;
 
   @Field(() => [Int])
-  collections?: number[];
-
-  @Field(() => [Int])
-  brands?: number[];
+  products?: number[];
 }

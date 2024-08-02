@@ -14,10 +14,11 @@ export class ProductsService {
   private readonly default_include = {
     _count: true,
     collections: true,
+    brands: true,
   };
 
   create(createProductInput: CreateProductInput) {
-    const { label, description, collections } = createProductInput;
+    const { label, description, collections, brands } = createProductInput;
     return this.prisma.product.create({
       data: {
         label,
@@ -25,6 +26,11 @@ export class ProductsService {
         collections: {
           connect: collections?.map((collectionId) => ({
             id: collectionId,
+          })),
+        },
+        brands: {
+          connect: brands?.map((brandId) => ({
+            id: brandId,
           })),
         },
       },
@@ -69,7 +75,7 @@ export class ProductsService {
   }
 
   update(id: number, updateProductInput: UpdateProductInput) {
-    const { label, description, collections } = updateProductInput;
+    const { label, description, collections, brands } = updateProductInput;
     return this.prisma.product.update({
       where: {
         id,
@@ -80,6 +86,11 @@ export class ProductsService {
         collections: {
           set: collections?.map((collectionId) => ({
             id: collectionId,
+          })),
+        },
+        brands: {
+          set: brands?.map((brandId) => ({
+            id: brandId,
           })),
         },
       },

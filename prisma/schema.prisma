@@ -27,6 +27,16 @@ model Product {
   label       String
   description String?
   collections Collection[]
+  brands      Brand[]
   created_at  DateTime     @default(now())
   updated_at  DateTime     @updatedAt
+}
+
+model Brand {
+  id          Int       @id @default(autoincrement())
+  label       String
+  description String?
+  products    Product[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
 }

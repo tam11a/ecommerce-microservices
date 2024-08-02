@@ -8,6 +8,7 @@ import { CollectionsModule } from './collections/collections.module';
 import { PrismaModule } from '@app/prisma';
 import { PagingModule } from '@app/paging';
 import { ProductsModule } from './products/products.module';
+import { BrandsModule } from './brands/brands.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ProductsModule } from './products/products.module';
     }),
     CollectionsModule,
     ProductsModule,
+    BrandsModule,
   ],
   controllers: [],
   providers: [],
